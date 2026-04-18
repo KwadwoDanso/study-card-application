@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flipping Study Card</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+
+    <!-- App title -->
+    <h1>Study Cards</h1>
+
+    <!-- Controls to create a new card and adjust flip speed -->
+    <div class="controls">
+        <button id="new-card-btn" type="button">+ New Card</button>
+        <button id="clear-all-btn" type="button" class="btn-secondary">Clear All</button>
+
+        <div class="speed-control">
+            <label for="speed-slider">Flip Speed:</label>
+            <input id="speed-slider" type="range" min="2" max="15" value="6" />
+            <span id="speed-value">0.6s</span>
+        </div>
+    </div>
+
+    <!-- Modal overlay for the compact card creation form -->
+    <div id="modal-overlay" class="modal-overlay hidden"></div>
+
+    <!-- Compact form for creating and editing cards -->
+    <div id="card-form" class="card-form compact hidden">
+        <h2>Create a study card</h2>
+        <label for="front-input">Front (Question)</label>
+        <input id="front-input" type="text" placeholder="Enter question or term" />
+
+        <label for="back-input">Back (Answer)</label>
+        <textarea id="back-input" placeholder="Enter answer or definition"></textarea>
+
+        <div class="form-buttons">
+            <button id="save-btn" type="button">Save</button>
+            <button id="cancel-btn" type="button" class="btn-secondary">Cancel</button>
+        </div>
+    </div>
+
+    <!-- The three.js card canvas container -->
+    <!-- perspective on the wrapper enables the 3D flip effect -->
+    <div class="card-wrapper">
+
+        <!-- This message shows when there are no cards yet -->
+        <p id="empty-msg" class="empty-msg">No cards yet. Click "+ New Card" to create one.</p>
+
+        <div id="card-viewer" class="card-viewer hidden">
+            <canvas id="card-canvas"></canvas>
+        </div>
+
+        <!-- Shows which card you're on, like "2 / 5" -->
+        <p id="card-counter" class="card-counter hidden"></p>
+
+        <!-- Navigation and action buttons -->
+        <div id="card-buttons" class="card-buttons hidden">
+            <button id="prev-btn" type="button">Previous</button>
+            <button id="flip-btn" type="button">Flip Card</button>
+            <button id="next-btn" type="button">Next</button>
+        </div>
+
+        <div id="edit-buttons" class="edit-buttons hidden">
+            <button id="edit-btn" type="button" class="btn-edit">Edit</button>
+            <button id="delete-btn" type="button" class="btn-danger">Delete</button>
+        </div>
+    </div>
+
+</body>
+
+</html>
